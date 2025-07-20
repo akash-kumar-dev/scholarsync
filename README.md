@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ScholarSync – Resume & Google Scholar Integration App
 
-## Getting Started
+A full-stack web application built with **Next.js** that integrates a user's resume and Google Scholar profile to suggest relevant projects based on skills, education, and academic contributions.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Resume Upload & Parsing**: Upload PDF/DOCX files and extract structured data
+- **Google Scholar Integration**: Fetch and analyze academic profiles
+- **Smart Project Suggestions**: AI-powered recommendations based on skills and research interests
+- **Responsive UI**: Modern design with Tailwind CSS
+- **Secure File Handling**: Input validation and secure file uploads
+- **Real-time Processing**: Async operations with loading states
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Frontend
+- **Next.js 14** - React framework with SSR/SSG
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first styling
+- **Lucide React** - Modern icon library
+- **React Hook Form** - Form handling
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend
+- **Next.js API Routes** - Server-side API endpoints
+- **pdf-parse** - PDF document parsing
+- **mammoth.js** - DOCX document parsing
+- **cheerio** - Web scraping for Google Scholar
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+### Resume Processing
+1. Navigate to the **Resume** page
+2. Upload a PDF or DOCX resume file
+3. View extracted information:
+   - Personal details
+   - Skills
+   - Work experience
+   - Education
+4. Get project suggestions based on your skills
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Google Scholar Integration
+1. Navigate to the **Google Scholar** page
+2. Enter a Google Scholar profile URL
+3. View extracted data:
+   - Publications
+   - Citation metrics
+   - Research interests
+4. Get project recommendations based on academic profile
