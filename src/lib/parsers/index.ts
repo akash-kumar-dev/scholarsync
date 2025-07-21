@@ -1,5 +1,6 @@
 import { parsePDF } from './pdf-parser';
 import { parseDOCX } from './docx-parser';
+import { parseResumeWithAI } from './ai-enhanced-parser';
 import { ResumeExtractor } from './resume-extractor';
 import { TechStackData, ParserResponse } from '../types/resume';
 import { validateFile, getFileType } from '../utils/file-validator';
@@ -41,19 +42,34 @@ export async function parseResume(file: File): Promise<ParserResponse> {
         };
     }
 
-    const extractor = new ResumeExtractor(extractedText);
-    const extractedData = extractor.extract();
+    // Use AI-enhanced parsing with fallback
+    const parseResult = await parseResumeWithAI(extractedText, {
+      useAI: true,
+      aiStrategy: 'full',
+      fallbackOnError: true,
+      timeout: 8000
+    });
+
+    if (!parseResult.success) {
+      return {
+        success: false,
+        error: parseResult.error || 'Failed to parse resume'
+      };
+    }
 
     const processingTime = Date.now() - startTime;
+    
     const techStackData: TechStackData = {
-      ...extractedData,
+      ...parseResult.data!,
       metadata: {
         fileName: file.name,
         fileSize: file.size,
         fileType: fileType,
         totalPages: numPages,
         totalCharacters: extractedText.length,
-        processingTime
+        processingTime,
+        parsingSource: parseResult.source,
+        aiProcessingTime: parseResult.aiProcessingTime
       }
     };
 
@@ -74,3 +90,4 @@ export async function parseResume(file: File): Promise<ParserResponse> {
 export * from './pdf-parser';
 export * from './docx-parser';
 export * from './resume-extractor';
+export * from './ai-enhanced-parser';

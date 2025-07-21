@@ -40,6 +40,8 @@ export interface TechStackData {
     totalPages?: number;
     totalCharacters: number;
     processingTime: number;
+    parsingSource?: 'ai' | 'fallback';
+    aiProcessingTime?: number;
   };
 }
 
@@ -48,14 +50,4 @@ export interface ParserResponse {
   data?: TechStackData;
   error?: string;
   details?: string;
-}
-
-export interface ProjectSuggestion {
-  title: string;
-  description: string;
-  requiredSkills: string[];
-  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
-  category: 'Web Development' | 'Mobile Development' | 'Data Science' | 'DevOps' | 'AI/ML' | 'Blockchain' | 'Game Development';
-  estimatedTime: string;
-  matchPercentage?: number;
 }
